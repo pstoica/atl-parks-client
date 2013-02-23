@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('atlParks', [])
+angular.module('parkFind', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
