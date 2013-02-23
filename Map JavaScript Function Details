@@ -1,0 +1,30 @@
+ShowPark(id)
+This will be called whenever a user clicks on a park in the map and passes the primary key / ID of the park in. We can use this to populate side panel details.
+
+
+useMyLocation()
+Call this when a user whats to center the map on their browser's given geolocation (HTML5 only).
+
+
+useGeoLocation()
+This is another function related to centering the map on the browser's lat long information.
+
+
+PlotParks()
+This function is called after the map is initialized. You'll need to populate this function with all parks to show for a given map.
+
+
+getBoundaries()
+This function is called everytime a user scrolls on the map. It calculates the lat/long boundaries of the map so we will know what areas to look up maps for.
+
+
+PlotMap(map, name, id, latlongs)
+This function will generate the polygons, markers and info windows for each park on the map. It will also create listener events for mouseover, mouseout, and clicks on the park polygons.
+
+
+initialize()
+We need to call this on the page load. It builds the basic map and adds a listener for the center_changed event. After this function runs, it will call the PlotParks function.
+
+
+PlotParks()
+This contains 2 examples of how we will plot parks on the map by calling the PlotMap function. Everytime the filters change or the location changes (either by the user moving the map or the map center being changed programmtically), we should refresh the data we are showing.
