@@ -1,3 +1,302 @@
+@import "compass/css3/transition";
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/text/replacement";
+@import "normalize";
+
+$green:  #c5c87e;
+$orange: #d8662d;
+$cream:  #f4f2f1;
+$cream-green: mix($cream, $green, 80%);
+$blue:   #6493be;
+$brown:  #625b52;
+$black:  #403f3f;
+$white:  #ffffff;
+$dark-green: mix($green, $black, 80%);
+
+html {
+  font-size: 100%;
+}
+
 body {
-	font-size: 11px;
+  background-color: $cream;
+  color: $black;
+  font-family: "lemonde-courrier";
+}
+
+textarea, input {
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+a, button, input {
+  @include transition(linear 0.15s all);
+  text-decoration: none;
+}
+
+a {
+  color: $black;
+}
+
+#page-header {
+  padding: 40px;
+  border-bottom: 6px solid $orange;
+
+  hgroup {
+    @include hide-text;
+  }
+}
+
+#navigation {
+  width: 340px;
+  padding: 20px;
+  box-sizing: border-box;
+  float: left;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: 290px;
+  overflow-y: scroll;
+  overflow-x: visible;
+
+  .nav-inner {
+    padding: 5px 0;
+    background-color: $cream-green;
+  }
+}
+
+#overview {
+  display: block;
+  position: absolute;
+  top: 291px;
+  right: 0;
+  bottom: 0;
+  left: 340px;
+  border-left: 5px solid $black;
+}
+
+#filter {
+  height: 50px;
+}
+
+#map {
+  display: block;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  border-top: 5px solid $black;
+}
+
+/* forms */
+::-webkit-input-placeholder {
+  color: $black;
+}
+:-moz-placeholder {
+  color: $black;
+}
+::-moz-placeholder {
+    color: $black;
+}
+:-ms-input-placeholder {
+    color: $black;
+}
+
+#navigation {
+  font-size: 1.5rem;
+
+  h2, .index {
+    font-size: 1.35rem;
+  }
+}
+
+input, button {
+  color: $black;
+  border: none;
+  background-color: $cream;
+  padding: 15px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.park-description {
+  font-weight: 100;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba($black, 0.9);
+  display: block;
+}
+
+#form-search {
+  border-right: 5px solid $black;
+  width: 40%;
+}
+
+#form-resources {
+  width: 60%;
+}
+
+.form-section {
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  float: left;
+
+  input:focus {
+    background: $black;
+    color: $cream;
+  }
+}
+
+.form-label {
+  width: 100%;
+  padding-right: 50px;
+  text-align: left;
+}
+
+.form-arrow {
+  position: absolute;
+  background: transparent;
+  right: 0;
+  top: 0;
+  width: 50px;
+  font-weight: 100;
+  color: $green;
+}
+
+.form-dropdown {
+  @include transition(background 0.15s linear);
+  background-color: $cream;
+  display: none;
+}
+
+.form-label:focus, .form-section.open {
+  .form-label {
+    background: $green;
+  }
+
+  .form-arrow {
+    color: $black;
+  }
+}
+
+.form-section.open .form-dropdown {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  li {
+    display: block;
+    float: left;
+  }
+}
+
+.form-dropdown {
+  background-color: $green;
+  padding: 15px 0;
+
+  ul {
+    width: 23%;
+    padding: 0 5%;
+    float: left;
+  }
+}
+
+#park-list {
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+
+  li {
+    border-bottom: 2px solid rgba($brown, 0.2);
+    position: relative;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 5px 1px 5px 50px;
+
+    &:hover {
+      background-color: rgba($orange, 0.6);
+    }
+  }
+
+  .index {
+    display: inline-block;
+    position: absolute;
+    margin-left: -42px;
+    line-height: normal;
+    text-align: right;
+    width: 30px;
+  }
+
+  .park-name {
+    font-size: 1.3rem;
+  }
+}
+
+#park-details {
+  background-color: $cream-green;
+  padding: 10px 12px;
+
+  .reservation {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $orange;
+    color: $white;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+}
+
+#intro {
+  padding: 0 10px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+#intro em {
+  color: mix($cream, $black, 50%);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 1em 0;
+  display: block;
+}
+
+h3 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: normal;
+  margin-bottom: 0.5em;
+}
+
+#intro address {
+  font-size: 0.8rem;
+  p {
+    color: mix($cream, $black, 50%);
+  }
+}
+
+#intro .phone {
+  margin-top: 1em;
 }

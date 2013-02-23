@@ -2,8 +2,8 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head ng-app="parkFind">
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="parkFind"> <!--<![endif]-->
+  <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title></title>
@@ -11,8 +11,10 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="styles/main.css">
+    <script type="text/javascript" src="//use.typekit.net/ttg4sxw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
-  <body >
+  <body ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -22,11 +24,133 @@
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-controller="MainCtrl">
+    <header id="page-header">
+      <img src="logo.png" alt="Park Find - City of Atlanta" id="logo" />
+    </header>
 
-    </div>
+    <nav role="main" id="navigation">
+      <div class="nav-inner">
+        <div id="intro" ng-show="showIntro">
+          <h1>Welcome! Enter location or park name and filter by desired park resources.</h1>
+          <em>Want to make a reservation? Visit our Park Reservation Form.</em>
+          <address>
+            <h3>Department of Parks, Recreation &amp; Cultural Services</h3>
+            <p>233 Peachtree Street NE, Suites 1600/1700
+            <br />Atlanta, Gerogia 30303</p>
+            <p>404-546-6788</p>
+          </address>
+        </div>
+        <div ng-view></div>
+      </div>
+    </nav>
+    <section id="overview">
+      <form ng-submit="doSearch()" id="filter">
+        <div id="form-search" class="form-section" ng-class="{active: active}">
+          <input type="text" name="q" ng-model="query" class="form-label" placeholder="Search" />
+          <input type="submit" class="form-arrow" />
+        </div>
+        <div id="form-resources" class="form-section" ng-class="{open: open}">
+          <div class="form-dropdown">
+            <ul>
+              <li>
+                <label for="pavilions" class="icon-pavilions">Pavilions</label>
+                <input type="checkbox" id="pavilions">
+              </li>
+              <li>
+                <label for="playgrounds" class="icon-playgrounds">Playgrounds</label>
+                <input type="checkbox" id="playgrounds">
+              </li>
+              <li>
+                <label for="dog" class="icon-dog">Dog Park</label>
+                <input type="checkbox" id="dog">
+              </li>
+              <li>
+                <label for="picnic_tables" class="icon-picnic_tables">Picnic Tables</label>
+                <input type="checkbox" id="picnic_tables">
+              </li>
+              <li>
+                <label for="picnic_shelter" class="icon-picnic_shelter">Picnic Shelter</label>
+                <input type="checkbox" id="picnic_shelter">
+              </li>
+              <li>
+                <label for="grill" class="icon-park_grill">Park Grill</label>
+                <input type="checkbox" id="park_grill">
+              </li>
+              <li>
+                <label for="restrooms" class="icon-restrooms">Restrooms</label>
+                <input type="checkbox" id="restrooms">
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <label for="parking_spaces" class="icon-parking_spaces">Parking Spaces</label>
+                <input type="checkbox" id="parking_spaces">
+              </li>
+              <li>
+                <label for="ball_fields" class="icon-ball_fields">Ball Fields</label>
+                <input type="checkbox" id="ball_fields">
+              </li>
+              <li>
+                <label for="soccer_fields" class="icon-soccer_fields">Soccer Fields</label>
+                <input type="checkbox" id="soccer_fields">
+              </li>
+              <li>
+                <label for="tennis_courts" class="icon-tennis_courts">Tennis Courts</label>
+                <input type="checkbox" id="tennis_courts">
+              </li>
+              <li>
+                <label for="basketball_courts" class="icon-basketball_courts">Basketball Courts</label>
+                <input type="checkbox" id="basketball_courts">
+              </li>
+              <li>
+                <label for="volleyball_courts" class="icon-volleyball_courts">Volleyball Courts</label>
+                <input type="checkbox" id="volleyball_courts">
+              </li>
+              <li>
+                <label for="pool" class="icon-pool">Pool</label>
+                <input type="checkbox" id="pool">
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <label for="gym" class="icon-gym">Gym/Rec Center</label>
+                <input type="checkbox" id="gym">
+              </li>
+              <li>
+                <label for="basketball" class="icon-basketball">Basketball</label>
+                <input type="checkbox" id="basketball">
+              </li>
+              <li>
+                <label for="track" class="icon-track">Track</label>
+                <input type="checkbox" id="track">
+              </li>
+              <li>
+                <label for="nat" class="icon-nat">Natatorium</label>
+                <input type="checkbox" id="nat">
+              </li>
+              <li>
+                <label for="golf" class="icon-golf">Golf</label>
+                <input type="checkbox" id="golf">
+              </li>
+              <li>
+                <label for="unpaved_trail" class="icon-unpaved_trail">Unpaved Trail</label>
+                <input type="checkbox" id="unpaved_trail">
+              </li>
+              <li>
+                <label for="paved_trail" class="icon-paved_trail">Paved Trail</label>
+                <input type="checkbox" id="paved_trail">
+              </li>
+            </ul>
+          </div>
+          <button ng-click="open=!open" class="form-label" type="button">Select Resources</button>
+          <button ng-click="open=!open" class="form-arrow" type="button">D</button>
+        </div>
+      </form>
+      <google-map id="map" center="center" draggable="true" zoom="zoom" markers="parks" mark-click="true"></google-map>
+    </section>
+    
 
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;language=en"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
@@ -37,7 +161,6 @@
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

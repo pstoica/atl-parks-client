@@ -1,0 +1,9 @@
+<ul id="park-list">
+	<li ng-repeat="park in parks">
+		<a ng-href="#/{{park.id}}">
+			<span class="index">{{$index + 1}}.</span>
+			<h2 class="park-name">{{park.name}}</h2>
+			<small class="park-description" ng-hide="park.distance == null">{{park.distance}} miles from location</small>
+		</a>
+	</li>
+</ul>
