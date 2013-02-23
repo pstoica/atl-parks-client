@@ -13,11 +13,11 @@
         function PlotMap(map, name, id, latlongs) {
             var park_plot = [];
             for (var i = 0; i < latlongs.length; i++) {
-                park_plot.push(new google.maps.LatLng(latlongs[i][0],latlongs[i][1]));
+                park_plot.push(new google.maps.LatLng(latlongs[i][1],latlongs[i][0]));
             }
 
             // Node
-            var randomNode = new google.maps.LatLng(latlongs[0][0], latlongs[0][1]);
+            var randomNode = new google.maps.LatLng(latlongs[0][1], latlongs[0][0]);
 
             // Construct the polygon
             park_polygon = new google.maps.Polygon({
