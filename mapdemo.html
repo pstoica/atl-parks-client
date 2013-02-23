@@ -13,30 +13,30 @@
         function PlotMap(map, name, id, latlongs) {
             var park_plot = [];
             for (var i = 0; i < latlongs.length; i++) {
-                park_plot.push(new google.maps.LatLng(latlongs[i][0],latlongs[i][1]));
+                park_plot.push(new google.maps.LatLng(latlongs[i][1],latlongs[i][0]));
             }
 
             // Node
-            var randomNode = new google.maps.LatLng(latlongs[0][0], latlongs[0][1]);
+            var randomNode = new google.maps.LatLng(latlongs[0][1], latlongs[0][0]);
 
             // Construct the polygon
             park_polygon = new google.maps.Polygon({
                 paths: park_plot,
-                strokeColor: '#FF0000',
+                strokeColor: '#C5C87E',
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
-                fillColor: '#FF0000',
+                fillColor: '#C5C87E',
                 fillOpacity: 0.35
             });
 
             park_polygon.setMap(map);
 
             google.maps.event.addListener(park_polygon, 'click', function() {
-                if (park_polygon.fillColor != '#0000FF') {
-                    this.setOptions({ fillColor: "#0000FF" });
+                if (park_polygon.fillColor != '#D8662D') {
+                    this.setOptions({ fillColor: "#D8662D" });
                 }
                 else {
-                    this.setOptions({ fillColor: "#00FF00" });
+                    this.setOptions({ fillColor: "#756E66" });
                 }
                 ShowPark(id);
             });
@@ -52,15 +52,15 @@
             });
 
             google.maps.event.addListener(park_polygon, "mouseover", function() {
-                if (park_polygon.fillColor == '#FF0000') {
-                    this.setOptions({ fillColor: "#00FF00" });
+                if (park_polygon.fillColor == '#C5C87E') {
+                    this.setOptions({ fillColor: "#756E66" });
                 }
                 infowindow.open(map, marker);
             });
 
             google.maps.event.addListener(park_polygon, "mouseout", function() {
-                if (park_polygon.fillColor == '#00FF00') {
-                    this.setOptions({ fillColor: "#FF0000" });
+                if (park_polygon.fillColor == '#756E66') {
+                    this.setOptions({ fillColor: "#C5C87E" });
                 }
                 infowindow.close();
             }); 
